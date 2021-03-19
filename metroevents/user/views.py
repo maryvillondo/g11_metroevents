@@ -5,12 +5,12 @@ from django.views.generic import View
 
 class UserIndexView(View):
 	def get(self, request):
-		return render(request, 'index.html')
-
-class UserRegisterView(View):
-	def get(self, request):
-		return render(request, 'register.html')
+		return render(request, 'index_user.html')
 
 class UserEventView(View):
 	def get(self, request):
-		return render(request, 'events.html')
+		return render(request, 'events_user.html')
+
+class UserProfileView(View):
+	def get(self, request):
+		return render(request, 'profile_user.html')

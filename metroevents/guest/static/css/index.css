@@ -1,0 +1,24 @@
+body
+{
+	background-image: url('/static/images/banner2.jpg');
+	background-size: cover;
+}
+
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 3px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.success {
+  border-color: #ACD1E9;
+  color: black;
+}
+
+.success:hover {
+  background-color: #ACD1E9;
+  color: white;
+}
