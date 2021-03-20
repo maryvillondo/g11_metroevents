@@ -1,6 +1,6 @@
 {% load static %}
-<html>
-<head>
+
+{% block headerinclude %}
 	<title>Metro Event</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -9,11 +9,10 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock headerinclude %}
 
-</head>
 
-<body>
-
+{% block content %}
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -77,4 +76,4 @@
 </div> 
 <!--container end.//-->
 
-</body>
+{% endblock content %}
