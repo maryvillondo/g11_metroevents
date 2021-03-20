@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from .forms import *
 from .models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect 
 
 # Create your views here.
 
@@ -41,7 +41,7 @@ class GuestRegisterView(View):
 						register_date = reg_date, email = email)
 					form.save()
 
-					return redirect('guest:index_view')
+					return HttpResponseRedirect("http://127.0.0.1:8000/guest/index")
 				else:
 					return HttpResponse("Email already taken.")
 			else:
