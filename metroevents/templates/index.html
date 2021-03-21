@@ -49,26 +49,28 @@
   <h4 class="card-title mt-3 text-center">Sign In</h4>
   <p class="text-center">Get started with our events</p>
 
+  <form id="login" method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+  {% csrf_token %}
     <div class="form-group input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
      </div>
-        <input name="" class="form-control" placeholder="Email" type="email">
+        <input id="email" name="email" class="form-control" placeholder="Email" type="email">
     </div>
 
     <div class="form-group input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
     </div>
-        <input class="form-control" placeholder="Password" type="password">
+        <input id="pword" name="pword" class="form-control" placeholder="Password" type="password">
     </div> <!-- form-group// -->
 
       
-
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <button type="submit" class="btn btn-primary btn-block" id="id-login" name="login">Login</button>
     </div> <!-- form-group// -->      
     <p class="text-center">Don't have an account? <a href="register">Sign Up</a> </p>
+  </form>
 </article>
 </div> <!-- card.// -->
 </center>

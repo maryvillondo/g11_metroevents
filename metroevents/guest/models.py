@@ -13,3 +13,9 @@ class Users(models.Model):
 
 	class Meta:
 		db_table = "Users"
+
+class currentUser(models.Model):
+	user_id = models.IntegerField()
+
+	class Meta:
+		db_table = "currentUser"

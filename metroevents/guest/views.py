@@ -2,13 +2,44 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from .forms import *
 from .models import *
-from django.http import HttpResponse, HttpResponseRedirect 
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import auth, User
 
 # Create your views here.
 
 class GuestIndexView(View):
 	def get(self, request):
 		return render(request, 'index.html')
+
+	def post(self, request):
+		form = LoginForm(request.POST)
+
+		if form.is_valid():
+			email = request.POST.get("email")
+			pword = request.POST.get("pword")
+
+			# user = authenticate(request, email = email, password = pword)
+
+			# if user is not None:
+			# 	print('Found')
+			# 	login(request, user)
+			# 	currentUser = user
+			# 	print(str(currentUser.id) + "is logged in")
+			# 	context = {
+			# 	'currentUser' : currentUser
+			# 	}
+
+			users = Users.objects.all()
+
+			for user in users:
+				if (user.email == email and user.user_pword == pword):
+					form = currentUser.objects.get(id=2)
+					form.user_id = user.id
+					form.save()
+					return HttpResponseRedirect("http://127.0.0.1:8000/user/index_user")
+			else:
+				return HttpResponse("Wrong Credentials")
 
 class GuestEventView(View):
 	def get(self, request):
@@ -19,31 +50,34 @@ class GuestRegisterView(View):
 		return render(request, 'register.html')
 
 	def post(self, request):
-			form = UserForm(request.POST)
+		form = UserForm(request.POST)
 
-			if form.is_valid():
-				first = request.POST.get("firstName")
-				last = request.POST.get("lastName")
-				email = request.POST.get("email")
-				bday = request.POST.get("bdate")
-				pword = request.POST.get("pword")
-				reg_date = request.POST.get("reg_date")
+		if form.is_valid():
+			first = request.POST.get("firstName")
+			last = request.POST.get("lastName")
+			email = request.POST.get("email")
+			bday = request.POST.get("bdate")
+			pword = request.POST.get("pword")
+			reg_date = request.POST.get("reg_date")
 
-				users = Users.objects.all()
-				count = 0
+			users = Users.objects.all()
 
-				for user in users:
-					if(user.email == email):
-						count = 1
+			count = 0
 
-				if (count == 0):
-					form = Users(firstName = first, lastName = last, birthdate = bday, user_pword = pword, 
-						register_date = reg_date, email = email)
-					form.save()
+			for user in users:
+				if(user.email == email):
+					count = 1
 
-					return HttpResponseRedirect("http://127.0.0.1:8000/guest/index")
-				else:
-					return HttpResponse("Email already taken.")
+			if (count == 0):
+				form = Users(firstName = first, lastName = last, birthdate = bday, user_pword = pword, 
+					register_date = reg_date, email = email)
+				form.save()
+				# user = User.objects.create_user(first, email, pword)
+				# user.last_name = last
+				# user.save()
+				return HttpResponseRedirect("http://127.0.0.1:8000/guest/index")
 			else:
-				print(form.errors)
-				return HttpResponse('not valid')
+				return HttpResponse("Email already taken.")
+		else:
+			print(form.errors)
+			return HttpResponse('not valid')

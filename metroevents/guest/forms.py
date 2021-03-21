@@ -7,8 +7,8 @@ class UserForm(forms.ModelForm):
 		model = Users
 		fields = ('firstName','lastName', 'user_pword', 'email')
 
-# class LoginForm(forms.ModelForm):
+class LoginForm(forms.ModelForm):
 
-# 	class Meta:
-# 		model = Login
-# 		fields = ('emailAddress', 'password')
+	class Meta:
+		model = Users
+		fields = ('email', 'user_pword')
