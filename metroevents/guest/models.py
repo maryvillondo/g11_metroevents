@@ -14,6 +14,16 @@ class Users(models.Model):
 	class Meta:
 		db_table = "Users"
 
+class Organizers(Users):
+	
+	class Meta:
+		db_table = "Organizers"
+
+class Administrators(Users):
+
+	class Meta:
+		db_table = "Administrators"
+
 class currentUser(models.Model):
 	user_id = models.IntegerField()
 

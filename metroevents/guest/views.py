@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from organizer.models import Events
 from .forms import *
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import auth, User
 
 # Create your views here.
 
@@ -31,10 +30,30 @@ class GuestIndexView(View):
 			# 	}
 
 			users = Users.objects.all()
+			organizers = Organizers.objects.all()
+			administrators = Administrators.objects.all()
+
+			for administrator in administrators:
+				for user in users:
+					if (administrator.users_ptr_id == user.id):
+						if (user.email == email and user.user_pword == pword):
+							form = currentUser.objects.get(id=1)
+							form.user_id = user.id
+							form.save()
+							return HttpResponseRedirect("http://127.0.0.1:8000/administrator/index_admin")
+
+			for organizer in organizers:
+				for user in users:
+					if (organizer.users_ptr_id == user.id):
+						if (user.email == email and user.user_pword == pword):
+							form = currentUser.objects.get(id=1)
+							form.user_id = user.id
+							form.save()
+							return HttpResponseRedirect("http://127.0.0.1:8000/organizer/index_organizer")
 
 			for user in users:
 				if (user.email == email and user.user_pword == pword):
-					form = currentUser.objects.get(id=2)
+					form = currentUser.objects.get(id=1)
 					form.user_id = user.id
 					form.save()
 					return HttpResponseRedirect("http://127.0.0.1:8000/user/index_user")
@@ -43,7 +62,12 @@ class GuestIndexView(View):
 
 class GuestEventView(View):
 	def get(self, request):
-		return render(request, 'events.html')
+		events = Events.objects.all()
+
+		context = {
+			'events' : events
+		}
+		return render(request, 'events.html', context)
 
 class GuestRegisterView(View):
 	def get(self, request):

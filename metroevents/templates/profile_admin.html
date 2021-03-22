@@ -31,6 +31,9 @@
       <li class="nav-item">
         <a class="nav-link" href="events_admin">Events</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="requests_admin">Requests</a>
+      </li>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" aria-label="Search">
         <button class="btn success" type="submit">Search</button>
@@ -47,8 +50,9 @@
       <li class="nav-item active">
         <!-- <a class="nav-link" href="profile_admin">USER<span class="sr-only">(current)</span></a> -->
         <div class="dropdown">
+          {% for user in user %}
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            NAME HERE
+            {{user.firstName}} {{user.lastName}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="profile_admin">Profile</a>
@@ -67,11 +71,12 @@
 <div class="card" style="width: 28rem;">
 <article class="card-body mx-auto" style="max-width:">
   <img src="avatar.jpg" style="height:150px;">
-	<h4 class="card-title mt-3 text-center">FIRST NAME LASTNAME</h4>
+	<h4 class="card-title mt-3 text-center">{{user.firstName}} {{user.lastName}}</h4>
 
 	<form>
-	 <p>Email: <a href="">firstnamelastname@email.com</a></p>
-   <p>Birthday: 01 - 02 - 1998</p>
+	 <p>Email: <a href="#">{{user.email}}</a></p>
+   <p>Birthday: {{user.birthdate}}</p>
+   {% endfor %}
     </form>                                                     
 </article>
 </div> <!-- card.// -->

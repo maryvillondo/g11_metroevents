@@ -48,11 +48,15 @@
       <li class="nav-item">
         <!-- <a class="nav-link" href="profile_organizer">USER<span class="sr-only">(current)</span></a> -->
         <div class="dropdown">
+            {% for user in user %}
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            NAME HERE
+            {{user.firstName}} {{user.lastName}}
           </button>
+            {% endfor %}
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="profile_organizer">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="create_event">Create Event</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="../guest/index">Logout</a>
           </div>
@@ -66,10 +70,11 @@
 <br><br><br>
 <div class="container">
 <div class="row">
+    {% for event in events %}
     <div class="col-lg-4">
         <div class="card card-margin">
             <div class="card-header no-border">
-                <h5 class="card-title">Larong Pinoy Competition</h5>
+                <h5 class="card-title">{{event.event_name}}</h5>
             </div>
             <div class="card-body pt-0">
                 <div class="widget-49">
@@ -79,15 +84,12 @@
                             <span class="widget-49-date-month">apr</span>
                         </div>
                         <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">Event ID?</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                            <span class="widget-49-pro-title">Event ID: {{event.id}}</span>
+                            <span class="widget-49-pro-title">Event Date: {{event.event_date}}</span>
+                            <span class="widget-49-pro-title">Number of Participants: {{event.num_participants}}</span>
+                            <span class="widget-49-pro-title">Number of Interested: {{event.num_interested}}</span><br>
                         </div>
                     </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Details 1</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 2</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 3</span></li>
-                    </ol>
                     <div class="widget-49-meeting-action">
                         <a href="#" class="btn btn-sm btn-flash-border-warning">Join Event</a>
                         <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
@@ -99,72 +101,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">Event Name</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-warning">
-                            <span class="widget-49-date-day">19</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">Event ID?</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Details 1</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 2</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 3</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">Join Event</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
-                    </div>
-                    <div style="float:right;">
-                        <a href="#link">Request</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">Event Name</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-success">
-                            <span class="widget-49-date-day">22</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">Event ID?</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Details 1</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 2</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 3</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">Join Event</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
-                    </div>
-                    <div style="float:right;">
-                        <a href="#link">Request</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 </div>
 </div> 
