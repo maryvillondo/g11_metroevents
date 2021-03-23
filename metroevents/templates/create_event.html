@@ -1,54 +1,56 @@
+{% load static %}
 <html>
 <head>
 	<title>Metro Event</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="create_event.css">
+	<link rel="stylesheet" href="{% static 'css/create_event.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 </head>
 
 <body>
-<br><br><br>
-<center>
-<div class="card" style="width: 18rem;">
-<article class="card-body mx-auto" style="max-width:">
-  <h4 class="card-title mt-3 text-center">Create Event</h4>
-  <p class="text-center">What's on your mind?</p>
+  <br><br><br>
+  <center>
+    <div class="card" style="width: 18rem;">
+      <article class="card-body mx-auto" style="max-width:auto;">
+        <h4 class="card-title mt-3 text-center">Create Event</h4>
+        <p class="text-center">What's on your mind?</p>
 
-  <form id="createEvent" method="POST" action="" autocomplete="off" enctype="multipart/form-data">
-  {% csrf_token %}
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-tasks"></i> </span>
-     </div>
-        <input id="event_name" name="event_name" class="form-control" placeholder="Event name" type="text" required>
-    </div>
+        <form id="createEvent" method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-tasks"></i> </span>
+          </div>
+              <input id="event_name" name="event_name" class="form-control" placeholder="Event name" type="text" required>
+          </div>
 
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
-    </div>
-        <input placeholder="Event date" class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="event_date" name="event_date" required>
-    </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+          </div>
+              <input placeholder="Event date" class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="event_date" name="event_date" required>
+          </div>
 
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-users"></i> </span>
-    </div>
-        <input id="event_participants" name="event_participants" class="form-control" placeholder="Participants" type="number" required>
-    </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-users"></i> </span>
+          </div>
+              <input id="event_participants" name="event_participants" class="form-control" placeholder="Participants" type="number" required>
+          </div>
 
-    <div class="form-group input-group" hidden>
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-users"></i> </span>
-    </div>
-        <input class="form-control" placeholder="Interested" type="number">
-    </div>
+          <div class="form-group input-group" hidden>
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-users"></i> </span>
+          </div>
+              <input class="form-control" placeholder="Interested" type="number">
+          </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">Create</button>
-        <a href="index_organizer" class="btn btn-secondary btn-block" style="color: white; text-decoration: none;">Cancel</a>
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Create</button>
+              <a href="index_organizer" class="btn btn-danger btn-block" style="text-decoration: none;">Cancel</a>
+          </div>
+        </form>
+      </article>
     </div>
-  </form>
-</article>
-</div>
-</center>
+  </center>
+</body>

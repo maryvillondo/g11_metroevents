@@ -59,44 +59,110 @@
 </nav>
 
 <br><br><br>
+<div class ="container">
+  <h2 style="color: white;">All Registered Users</h1>
+  <div>
+    <table class="table table-dark table-striped table-hover table-bordered table-sm text-center" id="example" cellspacing="0" >
+      <thead>
+        <tr>
+          <th>USER ID</th>    
+          <th>FULL NAME</th>  
+          <th>BIRTHDATE</th> 
+          <th>EMAIL</th>
+          <th>REGISTERED DATE</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>USER ID</th>    
+          <th>FULL NAME</th>  
+          <th>BIRTHDATE</th> 
+          <th>EMAIL</th>  
+          <th>REGISTERED DATE</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        {% for all in allUsers %}
+        <tr>
+          <td>{{all.id}}</td>
+          <td>{{all.firstName}} {{all.lastName}}</td> 
+          <td>{{all.birthdate}}</td> 
+          <td>{{all.email}}</td> 
+          <td>{{all.register_date}}</td>    
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
 <!--EVENTS-->
 <div class="container">
-  <h2 style="color: white;">My Events</h1>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">Larong Pinoy Competition</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
+  <h2 style="color: white;">Joined Events</h1>
+  <div class="row">
+    {%  for event in events %}
+      <div class="col-lg-4">
+          <div class="card card-margin">
+              <div class="card-header no-border">
+                  <h5 class="card-title">{{event.event_name}}</h5>
+              </div>
+              <div class="card-body pt-0">
+                  <div class="widget-49">
                     <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-primary">
-                            <span class="widget-49-date-day">15</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">Event ID?</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
+                      <div class="widget-49-date-primary">
+                          <span class="widget-49-date-day">15</span>
+                          <span class="widget-49-date-month">apr</span>
+                      </div>
+                      <div class="widget-49-meeting-info">
+                          <span class="widget-49-pro-title">Event ID: {{event.id}}</span>
+                          <span class="widget-49-pro-title">Event Date: {{event.event_date}}</span>
+                          <span class="widget-49-pro-title">Number of Participants: {{event.num_participants}}</span>
+                          <span class="widget-49-pro-title">Number of Interested: {{event.num_interested}}</span><br>
+                      </div>
                     </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Details 1</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 2</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 3</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">Administer</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+                    <div class="widget-49-meeting-action text-center">
+                        <a href="#" class="btn btn-sm btn-flash-border-primary">LEAVE EVENT</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div><!-- container end.// -->
+<br>
+<div class="container">
+  <h2 style="color: white;">All Events</h1>
+  <div class="row">
+    {%  for allE in allEvents %}
+      <div class="col-lg-4">
+          <div class="card card-margin">
+              <div class="card-header no-border">
+                  <h5 class="card-title">{{allE.event_name}}</h5>
+              </div>
+              <div class="card-body pt-0">
+                  <div class="widget-49">
+                    <div class="widget-49-title-wrapper">
+                      <div class="widget-49-date-primary">
+                          <span class="widget-49-date-day">15</span>
+                          <span class="widget-49-date-month">apr</span>
+                      </div>
+                      <div class="widget-49-meeting-info">
+                          <span class="widget-49-pro-title">Event ID: {{allE.id}}</span>
+                          <span class="widget-49-pro-title">Event Date: {{allE.event_date}}</span>
+                          <span class="widget-49-pro-title">Number of Participants: {{allE.num_participants}}</span>
+                          <span class="widget-49-pro-title">Number of Interested: {{allE.num_interested}}</span><br>
+                      </div>
+                    </div>
+                    <div class="widget-49-meeting-action text-center">
+                        <a href="#" class="btn btn-sm btn-flash-border-primary">CANCEL EVENT</a>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
 </div><!-- container end.// -->
 
-</div> 
-
-</body>
 </body>

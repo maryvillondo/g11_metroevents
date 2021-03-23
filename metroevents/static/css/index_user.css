@@ -1,7 +1,26 @@
 body
 {
-  background-image: url('banner2.jpg');
+  background-image: url('../../media/images/banner2.jpg');
   background-size: cover;
+}
+
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 3px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.success {
+  border-color: #ACD1E9;
+  color: black;
+}
+
+.success:hover {
+  background-color: #ACD1E9;
+  color: white;
 }
 
 .card-margin {
@@ -311,21 +330,12 @@ body
   text-transform: uppercase;
 }
 
-.btn {
-  border: 2px solid black;
-  background-color: white;
-  color: black;
-  padding: 3px 28px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.success {
-  border-color: #ACD1E9;
-  color: black;
-}
-
-.success:hover {
-  background-color: #ACD1E9;
+td {
   color: white;
+  text-align: center;
 }
+
+th{
+  text-align: center;
+}
+

@@ -65,24 +65,24 @@
   <table class="table-striped table-bordered table-sm" id="example" cellspacing="0" style="width: 80%; height: 20%; position: fixed; margin-left: 10%; margin-right: 10%; top: 20%">
     <thead>
       <tr>
-        <th>Notification Date</th>
-        <th>About</th>
-        <th>Sender</th>
+        <th>DATE</th>    
+        <th>ABOUT</th>  
+        <th>FROM</th> 
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <th>Notification Date</th>
-        <th>About</th>
-        <th>Sender</th>
+        <th>DATE</th>
+        <th>ABOUT</th>
+        <th>FROM</th>   
       </tr>
     </tfoot>
     <tbody>
       {% for notif in notifs %}
       <tr>
         <td>{{notif.notif_date}}</td>
-        <td>{{notif.about}}</td>
-        <td>{{notif.sender_id}}</td>
+        <td>{{notif.about}}</td> 
+        <td>{{notif.sender_id}}</td>     
       </tr>
       {% endfor %}
     </tbody>

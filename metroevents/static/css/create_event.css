@@ -1,13 +1,13 @@
 body
 {
-	background-image: url('/static/images/banner2.jpg');
-	background-size: cover;
+  background-image: url('../../media/images/banner2.jpg');
+  background-size: cover;
 }
 
 .btn {
-  border: 2px solid black;
-  background-color: white;
-  color: black;
+  /* border: 1px solid #353839; */
+  background-color: #353839;
+  color: whitesmoke; 
   padding: 3px 28px;
   font-size: 16px;
   cursor: pointer;

@@ -1,7 +1,7 @@
 body
 {
-  background-image: url('banner2.jpg');
-  background-size: cover;
+	background-image: url('../../media/images/banner2.jpg');
+	background-size: cover;
 }
 
 .btn {
