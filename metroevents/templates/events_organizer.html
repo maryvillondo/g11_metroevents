@@ -90,8 +90,8 @@
                         </div>
                     </div>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">Join Event</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">View All</a>
+                        <a type="button" class="btn btn-sm btn-flash-border-warning" href="#" data-toggle="modal" data-target="#modal-{{event.id}}">Join Event</a>
+                        <a href="#" class="btn btn-sm btn-flash-border-warning">Interested</a>
                     </div>
                     <div style="float:right;">
                         <a href="#link">Request</a>
@@ -99,6 +99,38 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">EVENT DETAILS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="margin-left: 3%;">
+            <h6> Event Name: <b>{{event.event_name}}</b></h6>
+            <h6> Event Date: <b>{{event.event_date}}</b></h6>
+            <h6> Number of Participants: <b>{{event.num_participants}}</b></h6>
+            <h6> Number of Interested: <b>{{event.num_interested}}</b></h6>
+          </div>
+
+          <form id="joinForm" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div hidden>
+              <input type="text" id="event_id" name="event_id" value="{{event.id}}">
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" name="btnJoin" id="btnJoin" class="btn btn-sm btn-flash-border-warning">Join</button>
+              <button type="button" class="btn btn-sm btn-flash-border-warning" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+        </div>
+      </div>
     </div>
     {% endfor %}
 </div>

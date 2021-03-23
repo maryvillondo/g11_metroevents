@@ -8,7 +8,7 @@ class Events(models.Model):
 	event_name = models.CharField(max_length = 50, null = True, blank = True)
 	event_date = models.DateField()
 	num_participants = models.IntegerField(null = True, blank = True)
-	num_interested = models.IntegerField(default = 0, null = True, blank = True)
+	num_interested = models.IntegerField(default = 1, null = True, blank = True)
 
 	class Meta:
 		db_table = "me_events"
