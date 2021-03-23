@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import View
-from guest.models import currentUser, Users
+from guest.models import currentUser, Users, Organizers, Administrators
 from organizer.models import Events
+from administrator.models import Notifications
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
 from .models import *
@@ -79,4 +80,27 @@ class AccountUpgradeRequestView(View):
 			print(form.errors)
 			return HttpResponse("not valid")
 
+class UserNotifView(View):
+	def get(self, request):
+		current = currentUser.objects.values_list("user_id", flat=True).get(pk = 1)
+		user = Users.objects.filter(id = current)
+		notifs = Notifications.objects.raw('SELECT * FROM notif, currentUser WHERE notif.receiver_id = currentUser.user_id')
+		administrators = Administrators.objects.all()
+		organizers = Organizers.objects.all()
 
+		for notif in notifs:
+			for administrator in administrators:
+				if administrator.users_ptr_id == notif.sender_id:
+					notif.sender_id = "Administrator"
+			
+			for organizer in organizers:
+				if organizer.users_ptr_id == notif.sender_id:
+					notif.sender_id = "Organizer"
+
+		context = {
+			'user' : user,
+			'notifs' : notifs,
+			'organizers' : organizers,
+			'administrators' : administrators
+		}
+		return render(request, 'notif_user.html', context)

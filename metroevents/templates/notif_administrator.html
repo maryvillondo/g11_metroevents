@@ -22,8 +22,8 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="index_user">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="index_user">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="events_user">Events</a>
@@ -33,11 +33,10 @@
         <button class="btn success" type="submit">Search</button>
       </form>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-           <a href="notif_user" class="nav-link">
-            <span style="margin-right: 20px">Notifications</span>
+      <li class="nav-item active">
+           <a href="#" class="nav-link">
+            <span>Notifications</span>
           </a> 
       </li> 
       <li class="nav-item">
@@ -58,48 +57,37 @@
         </div>
       </li>
     </ul>
-  </form>
   </div>
 </nav>
 
-<br><br><br>
-<!--EVENTS-->
-<div class="container">
-  <h2 style="color: white;">My Events</h1>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">Larong Pinoy Competition</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-primary">
-                            <span class="widget-49-date-day">15</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">Event ID?</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Details 1</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 2</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 3</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div>
+  <table class="table-striped table-bordered table-sm" id="example" cellspacing="0" style="width: 80%; height: 20%; position: fixed; margin-left: 10%; margin-right: 10%; top: 20%">
+    <thead>
+      <tr>
+        <th>Notification Date</th>
+        <th>About</th>
+        <th>Sender</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Notification Date</th>
+        <th>About</th>
+        <th>Sender</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {% for notif in notifs %}
+      <tr>
+        <td>{{notif.notif_date}}</td>
+        <td>{{notif.about}}</td>
+        <td>{{notif.sender_id}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-</div><!-- container end.// -->
-
-</div> 
+<br><br><br>
 
 </body>
 </body>

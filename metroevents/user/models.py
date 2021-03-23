@@ -1,5 +1,6 @@
 from django.db import models
 from guest.models import Users
+from organizer.models import Events
 
 # Create your models here.
 
@@ -11,3 +12,10 @@ class Requests(models.Model):
 
 	class Meta:
 		db_table = "Requests"
+
+class Participants(models.Model):
+	user = models.ForeignKey(Users, null = False, blank = False, on_delete = models.CASCADE, related_name = "Participants")
+	event = models.ForeignKey(Events, null = False, blank = False, on_delete = models.CASCADE, related_name = "Events")
+
+	class Meta:
+		db_table = "Participants"

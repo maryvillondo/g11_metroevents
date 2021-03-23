@@ -8,7 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="{% static 'css/index_organizer.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index_user.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 </head>
 
@@ -18,12 +18,12 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="index_organizer">METRO EVENTS</a>
+  <a class="navbar-brand" href="index_user">METRO EVENTS</a>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="index_organizer">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="index_organizer">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="events_organizer">Events</a>
@@ -33,15 +33,14 @@
         <button class="btn success" type="submit">Search</button>
       </form>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-           <a href="notif_organizer" class="nav-link">
+      <li class="nav-item active">
+           <a href="#" class="nav-link">
             <span>Notifications</span>
           </a> 
       </li> 
       <li class="nav-item">
-        <!-- <a class="nav-link" href="profile_organizer">USER<span class="sr-only">(current)</span></a> -->
+        <!-- <a class="nav-link" href="profile.html">USER<span class="sr-only">(current)</span></a> -->
         <div class="dropdown">
           {% for user in user %}
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,49 +57,37 @@
         </div>
       </li>
     </ul>
-  </form>
   </div>
 </nav>
 
-<br><br><br>
-<!--EVENTS-->
-<div class="container">
-  <h2 style="color: white;">My Events</h1>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card card-margin">
-            <div class="card-header no-border">
-                <h5 class="card-title">Larong Pinoy Competition</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-primary">
-                            <span class="widget-49-date-day">15</span>
-                            <span class="widget-49-date-month">apr</span>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">Event ID?</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>Details 1</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 2</span></li>
-                        <li class="widget-49-meeting-item"><span>Details 3</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">Organize</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div>
+  <table class="table-striped table-bordered table-sm" id="example" cellspacing="0" style="width: 80%; height: 20%; position: fixed; margin-left: 10%; margin-right: 10%; top: 20%">
+    <thead>
+      <tr>
+        <th>Notification Date</th>
+        <th>About</th>
+        <th>Sender</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Notification Date</th>
+        <th>About</th>
+        <th>Sender</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {% for notif in notifs %}
+      <tr>
+        <td>{{notif.notif_date}}</td>
+        <td>{{notif.about}}</td>
+        <td>{{notif.sender_id}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-</div><!-- container end.// -->
-
-</div> 
+<br><br><br>
 
 </body>
 </body>
