@@ -77,8 +77,8 @@
                   <div class="widget-49">
                       <div class="widget-49-title-wrapper">
                         <div class="widget-49-date-primary">
-                            <span class="widget-49-date-day">15</span>
-                            <span class="widget-49-date-month">apr</span>
+                          <span class="widget-49-date-day">{{event.event_date|date:"d"}}</span>
+                          <span class="widget-49-date-month">{{event.event_date|date:"M"}}</span>
                         </div>
                         <div class="widget-49-meeting-info">
                             <span class="widget-49-pro-title">Event ID: {{event.id}}</span>
