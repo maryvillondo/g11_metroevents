@@ -97,21 +97,17 @@
         <!---View Profile Modal-->
         <div class="modal fade" id="viewModal-{{all.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content ">
               <div class="modal-header">
-                <h5 class="modal-title" >{{all.firstName}} {{all.lastName}}</h5>
+                <h5 class="modal-title text-center text-capitalize" >{{all.firstName}} {{all.lastName}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form id="deleteForm" method="post">
-                  <p>Email: {{all.email}} </p>
-                  <p>Birthday: {{all.birthdate}}</p>
-                  <p>Date Registered: {{all.register_date}}</p>
-                <div class="modal-footer">                    
-                  <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
-                  <button type="submit" class="btn btn-danger" id="btnCDelete" name="btnCDelete">YES</button>
-                </div> 
+              <form class="align-content-center">
+                <p class="text-center"><b>Email:</b> {{all.email}} </p>
+                <p class="text-center"><b>Birthday:</b> {{all.birthdate}}</p>
+                <p class="text-center"><b>Date Registered:</b> {{all.register_date}}</p>
               </form>
             </div>
           </div>
@@ -132,11 +128,11 @@
                 {% csrf_token %}
                 <div class="modal-body">
                   <input type="text" name="dcustomer-id" value="{{customer.id}}" hidden>
-                  Are you sure you want to delete record?
+                  Are you sure you want to delete user?
                 </div>
                 <div class="modal-footer">                    
                   <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
-                  <button type="submit" class="btn btn-danger" id="btnCDelete" name="btnCDelete">YES</button>
+                  <button type="submit" class="btn btn-danger">YES</button>
                 </div> 
               </form>
             </div>
@@ -156,66 +152,116 @@
   <div class="row">
     {%  for event in events %}
       <div class="col-lg-4">
-          <div class="card card-margin">
-              <div class="card-header no-border">
-                  <h5 class="card-title">{{event.event_name}}</h5>
-              </div>
-              <div class="card-body pt-0">
-                  <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                      <div class="widget-49-date-primary">
-                        <span class="widget-49-date-day">{{event.event_date|date:"d"}}</span>
-                        <span class="widget-49-date-month">{{event.event_date|date:"M"}}</span>
-                      </div>
-                      <div class="widget-49-meeting-info">
-                          <span class="widget-49-pro-title">Event ID: {{event.id}}</span>
-                          <span class="widget-49-pro-title">Event Date: {{event.event_date}}</span>
-                          <span class="widget-49-pro-title">Number of Participants: {{event.num_participants}}</span>
-                          <span class="widget-49-pro-title">Number of Interested: {{event.num_interested}}</span><br>
-                      </div>
+        <div class="card card-margin">
+            <div class="card-header no-border">
+                <h5 class="card-title">{{event.event_name}}</h5>
+            </div>
+            <div class="card-body pt-0">
+                <div class="widget-49">
+                  <div class="widget-49-title-wrapper">
+                    <div class="widget-49-date-primary">
+                      <span class="widget-49-date-day">{{event.event_date|date:"d"}}</span>
+                      <span class="widget-49-date-month">{{event.event_date|date:"M"}}</span>
                     </div>
-                    <div class="widget-49-meeting-action text-center">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">LEAVE EVENT</a>
+                    <div class="widget-49-meeting-info">
+                        <span class="widget-49-pro-title">Event ID: {{event.id}}</span>
+                        <span class="widget-49-pro-title">Event Date: {{event.event_date}}</span>
+                        <span class="widget-49-pro-title">Number of Participants: {{event.num_participants}}</span>
+                        <span class="widget-49-pro-title">Number of Interested: {{event.num_interested}}</span><br>
                     </div>
                   </div>
+                  <div class="widget-49-meeting-action text-center">
+                    <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#leaveEventModal-{{event.id}}">LEAVE EVENT</button>
+                  </div>
+                </div>
+            </div>
+            <!---Leave Event Modal-->
+            <div class="modal fade" id="leaveEventModal-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Leave {{event.event_name}} Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form id="deleteForm" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                      <input type="text" name="dcustomer-id" value="{{event.id}}" hidden>
+                      Are you sure you want to leave event?
+                    </div>
+                    <div class="modal-footer">                    
+                      <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
+                      <button type="submit" class="btn btn-danger">YES</button>
+                    </div> 
+                  </form>
+                </div>
               </div>
+            </div>
           </div>
       </div>
       {% endfor %}
   </div>
 </div><!-- container end.// -->
+
 <br>
+
 <div class="container">
   <h2 style="color: white;">All Events</h1>
   <div class="row">
     {%  for allE in allEvents %}
-      <div class="col-lg-4">
-          <div class="card card-margin">
-              <div class="card-header no-border">
-                  <h5 class="card-title">{{allE.event_name}}</h5>
-              </div>
-              <div class="card-body pt-0">
-                  <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                      <div class="widget-49-date-primary">
-                          <span class="widget-49-date-day">{{allE.event_date|date:"d"}}</span>
-                          <span class="widget-49-date-month">{{allE.event_date|date:"M"}}</span>
-                      </div>
-                      <div class="widget-49-meeting-info">
-                          <span class="widget-49-pro-title">Event ID: {{allE.id}}</span>
-                          <span class="widget-49-pro-title">Event Date: {{allE.event_date}}</span>
-                          <span class="widget-49-pro-title">Number of Participants: {{allE.num_participants}}</span>
-                          <span class="widget-49-pro-title">Number of Interested: {{allE.num_interested}}</span><br>
-                      </div>
-                    </div>
-                    <div class="widget-49-meeting-action text-center">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">CANCEL EVENT</a>
-                    </div>
+    <div class="col-lg-4">
+      <div class="card card-margin">
+          <div class="card-header no-border">
+              <h5 class="card-title">{{allE.event_name}}</h5>
+          </div>
+          <div class="card-body pt-0">
+              <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+                  <div class="widget-49-date-primary">
+                      <span class="widget-49-date-day">{{allE.event_date|date:"d"}}</span>
+                      <span class="widget-49-date-month">{{allE.event_date|date:"M"}}</span>
                   </div>
+                  <div class="widget-49-meeting-info">
+                      <span class="widget-49-pro-title">Event ID: {{allE.id}}</span>
+                      <span class="widget-49-pro-title">Event Date: {{allE.event_date}}</span>
+                      <span class="widget-49-pro-title">Number of Participants: {{allE.num_participants}}</span>
+                      <span class="widget-49-pro-title">Number of Interested: {{allE.num_interested}}</span><br>
+                  </div>
+                </div>
+                <div class="widget-49-meeting-action text-center">
+                    <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{allE.id}}">CANCEL EVENT</button>
+                </div>
               </div>
           </div>
-      </div>
-      {% endfor %}
+        </div>
+        <!---Cancel Event Modal-->
+        <div class="modal fade" id="cancelEventModal-{{allE.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirm Cancellation of {{allE.event_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form id="deleteForm" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <input type="text" name="dcustomer-id" value="{{allE.id}}" hidden>
+                  Are you sure you want to cancel event?
+                </div>
+                <div class="modal-footer">                    
+                  <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
+                  <button type="submit" class="btn btn-danger">YES</button>
+                </div> 
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
   </div>
 </div><!-- container end.// -->
 

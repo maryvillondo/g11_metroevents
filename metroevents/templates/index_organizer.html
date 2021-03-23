@@ -88,13 +88,37 @@
                       </div>
                     </div>
                     <div class="widget-49-meeting-action text-center">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">LEAVE EVENT</a>
+                      <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#leaveEventModal-{{event.id}}">LEAVE EVENT</button>
                     </div>
                   </div>
               </div>
-          </div>
-      </div>
-      {% endfor %}
+              <!---Leave Event Modal-->
+              <div class="modal fade" id="leaveEventModal-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalCenterTitle">Leave {{event.event_name}} Event</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="deleteForm" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        <input type="text" name="dcustomer-id" value="{{event.id}}" hidden>
+                        Are you sure you want to leave event?
+                      </div>
+                      <div class="modal-footer">                    
+                        <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
+                        <button type="submit" class="btn btn-danger">YES</button>
+                      </div> 
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
   </div>
 </div><!-- container end.// -->
 <br>
@@ -104,28 +128,52 @@
     {%  for mine in owned %}
       <div class="col-lg-4">
           <div class="card card-margin">
-              <div class="card-header no-border">
-                  <h5 class="card-title">{{mine.event_name}}</h5>
-              </div>
-              <div class="card-body pt-0">
-                  <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                      <div class="widget-49-date-primary">
-                        <span class="widget-49-date-day">{{mine.event_date|date:"d"}}</span>
-                        <span class="widget-49-date-month">{{mine.event_date|date:"M"}}</span>
-                      </div>
-                      <div class="widget-49-meeting-info">
-                          <span class="widget-49-pro-title">Event ID: {{mine.id}}</span>
-                          <span class="widget-49-pro-title">Event Date: {{mine.event_date}}</span>
-                          <span class="widget-49-pro-title">Number of Participants: {{mine.num_participants}}</span>
-                          <span class="widget-49-pro-title">Number of Interested: {{mine.num_interested}}</span><br>
-                      </div>
-                    </div>
-                    <div class="widget-49-meeting-action text-center">
-                        <a href="#" class="btn btn-sm btn-flash-border-primary">CANCEL EVENT</a>
-                    </div>
+            <div class="card-header no-border">
+                <h5 class="card-title">{{mine.event_name}}</h5>
+            </div>
+            <div class="card-body pt-0">
+              <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+                  <div class="widget-49-date-primary">
+                    <span class="widget-49-date-day">{{mine.event_date|date:"d"}}</span>
+                    <span class="widget-49-date-month">{{mine.event_date|date:"M"}}</span>
                   </div>
+                  <div class="widget-49-meeting-info">
+                    <span class="widget-49-pro-title">Event ID: {{mine.id}}</span>
+                    <span class="widget-49-pro-title">Event Date: {{mine.event_date}}</span>
+                    <span class="widget-49-pro-title">Number of Participants: {{mine.num_participants}}</span>
+                    <span class="widget-49-pro-title">Number of Interested: {{mine.num_interested}}</span><br>
+                  </div>
+                </div>
+                <div class="widget-49-meeting-action text-center">
+                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{mine.id}}">CANCEL EVENT</button>
+                </div>
               </div>
+            </div>
+          </div>
+          <!---Cancel Event Modal-->
+          <div class="modal fade" id="cancelEventModal-{{mine.id}}" tabindex="-1" role="dialog" aria-labelledby="deletemodal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Cancellation of {{mine.event_name}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form id="deleteForm" method="post">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                    <input type="text" name="dcustomer-id" value="{{mine.id}}" hidden>
+                    Are you sure you want to cancel event?
+                  </div>
+                  <div class="modal-footer">                    
+                    <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
+                    <button type="submit" class="btn btn-danger">YES</button>
+                  </div> 
+                </form>
+              </div>
+            </div>
           </div>
       </div>
       {% endfor %}
