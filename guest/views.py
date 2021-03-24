@@ -40,7 +40,7 @@ class GuestIndexView(View):
 							form = currentUser.objects.get(id=1)
 							form.user_id = user.id
 							form.save()
-							return HttpResponseRedirect("http://127.0.0.1:8000/administrator/index_admin")
+							return render(request, 'index_admin.html')
 
 			for organizer in organizers:
 				for user in users:
@@ -49,14 +49,14 @@ class GuestIndexView(View):
 							form = currentUser.objects.get(id=1)
 							form.user_id = user.id
 							form.save()
-							return HttpResponseRedirect("http://127.0.0.1:8000/organizer/index_organizer")
+							return render(request, 'index_organizer.html')
 
 			for user in users:
 				if (user.email == email and user.user_pword == pword):
 					form = currentUser.objects.get(id=1)
 					form.user_id = user.id
 					form.save()
-					return HttpResponseRedirect("http://127.0.0.1:8000/user/index_user")
+					return render(request, 'index_user.html')
 			else:
 				return HttpResponse("Wrong Credentials")
 
