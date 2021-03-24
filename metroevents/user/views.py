@@ -31,7 +31,7 @@ class UserIndexView(View):
 
 class UserEventView(View):
 	def get(self, request):
-		current = curreUser.objects.values_list("user_id", flat=True).get(pk = 1)
+		current = currentUser.objects.values_list("user_id", flat=True).get(pk = 1)
 		user = Users.objects.filter(id = current)
 		events = Events.objects.raw('SELECT * FROM me_events WHERE me_events.id NOT IN (SELECT participants.event_id FROM participants, currentUser WHERE participants.user_id = currentUser.user_id)')
 

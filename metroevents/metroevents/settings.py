@@ -28,7 +28,7 @@ SECRET_KEY = 'eyx6e9-7&rvt!=kp$)d#n&$x8*j&+uiama-!994rfls0=0!r(d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,34 +81,34 @@ WSGI_APPLICATION = 'metroevents.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'g11_metroevents',
-#         'USER': 'g11_admin@group11-metroeventsdb',
-#         'PASSWORD': '@dmiN123456',
-#         'HOST': 'group11-metroeventsdb.mysql.database.azure.com',
-#         'PORT': '3306',
-#         'OPTIONS': {
-#         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#         'ssl': True
-#         },
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'metroevents',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
+        'NAME': 'g11_metroeventsdb',
+        'USER': 'g11_admin@group11-metroeventsdb',
+        'PASSWORD': '@dmiN123456',
+        'HOST': 'group11-metroeventsdb.mysql.database.azure.com',
         'PORT': '3306',
         'OPTIONS': {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        'ssl': True
         },
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'metroevents',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 
 # Password validation
