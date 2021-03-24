@@ -40,7 +40,7 @@ class GuestIndexView(View):
 							form = currentUser.objects.get(id=1)
 							form.user_id = user.id
 							form.save()
-							return render(request, 'index_admin.html')
+						return render(request, 'index_admin.html')
 
 			for organizer in organizers:
 				for user in users:
@@ -49,7 +49,7 @@ class GuestIndexView(View):
 							form = currentUser.objects.get(id=1)
 							form.user_id = user.id
 							form.save()
-							return render(request, 'index_organizer.html')
+						return render(request, 'index_organizer.html')
 
 			for user in users:
 				if (user.email == email and user.user_pword == pword):
@@ -57,8 +57,8 @@ class GuestIndexView(View):
 					form.user_id = user.id
 					form.save()
 					return render(request, 'index_user.html')
-			else:
-				return HttpResponse("Wrong Credentials")
+		else:
+			return HttpResponse("Wrong Credentials")
 
 class GuestEventView(View):
 	def get(self, request):
