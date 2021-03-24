@@ -34,7 +34,7 @@ class AdminIndexView(View):
 				event_id = request.POST.get("alle_id")
 				cancel_event = Events.objects.filter(id = event_id).delete()
 				print('Cancelled Successful')
-		return HttpResponseRedirect("http://127.0.0.1:8000/administrator/index_admin")
+		return render(request, 'index_admin.html')
 
 class AdminEventView(View):
 	def get(self, request):
