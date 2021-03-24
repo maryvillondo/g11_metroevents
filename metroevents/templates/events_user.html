@@ -34,7 +34,7 @@
       </li>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" aria-label="Search">
-        <button class="btn success" type="submit">Search</button>
+        <button class="btn success" type="submit" id="dropdownMenuButton">Search</button>
       </form>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -89,9 +89,16 @@
                             <span class="widget-49-pro-title">Number of Interested: {{event.num_interested}}</span><br>
                         </div>
                     </div>
-                    <div class="widget-49-meeting-action">
-                        <a type="button" class="btn btn-sm btn-flash-border-warning" href="#" data-toggle="modal" data-target="#modal-{{event.id}}">Join Event</a>
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">Interested</a>
+                    <div class="widget-49-meeting-action" role="group">
+                        <button type="button" class="btn btn-primary btn-sm btn-block" href="#" data-toggle="modal" data-target="#modal-{{event.id}}">Join Event</button>  
+                        <form method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <div hidden>
+                            <input type="text" id="event_id" name="event_id1" value="{{event.id}}">
+                            <input type="text" id="event_id" name="event_numi" value="{{event.num_interested}}">
+                          </div>
+                          <button type="submit" name="btnInterested" id="btnInterested" class="btn btn-sm btn-info btn-block mt-2" >Interested</button>
+                        </form>
                     </div>
                     <div style="float:right;">
                         <a href="#link">Request</a>
@@ -122,10 +129,11 @@
           {% csrf_token %}
             <div hidden>
               <input type="text" id="event_id" name="event_id" value="{{event.id}}">
+              <input type="text" id="event_id" name="event_nump" value="{{event.num_participants}}">
             </div>
 
             <div class="modal-footer">
-              <button type="submit" name="btnJoin" id="btnJoin" class="btn btn-sm btn-flash-border-warning">Join</button>
+              <button type="submit" name="btnJoin" id="btnJoin" class="btn btn-sm btn-flash-border-warning" >Join</button>
               <button type="button" class="btn btn-sm btn-flash-border-warning" data-dismiss="modal">Close</button>
           </div>
         </form>

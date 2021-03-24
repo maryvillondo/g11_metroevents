@@ -22,6 +22,19 @@ class OrganizerIndexView(View):
 			'owned' : ownedEvents
 		}
 		return render(request, 'index_organizer.html', context)
+	
+	def post(self,request):
+		if request.method == 'POST':
+			if 'btnLeave' in request.POST:
+				current = currentUser.objects.values_list("user_id", flat=True).get(pk = 1)
+				event_id = request.POST.get("event_id")
+				participant = Participants.objects.filter(event_id = event_id, user_id = current).delete()
+				print('Left Successfully')
+			elif 'btnCancel' in request.POST:
+				event_id = request.POST.get("mine_id")
+				cancel_event = Events.objects.filter(id = event_id).delete()
+				print('Cancelled Successful')
+		return HttpResponseRedirect("http://127.0.0.1:8000/organizer/index_organizer")
 
 class OrganizerEventView(View):
 	def get(self, request):
@@ -45,11 +58,26 @@ class OrganizerEventView(View):
 		if request.method == 'POST':
 			if 'btnJoin' in request.POST:
 				event_id = request.POST.get("event_id")
+				str_nump = request.POST.get("event_nump")
+				event_numparticipants = int(str_nump) + 1
+
+				update_numparticipants = Events.objects.filter(id = event_id).update(num_participants = event_numparticipants)
+
+				print(update_numparticipants)
+				print('Number of Participans Updated')
 
 				form = Participants(event_id = event_id, user_id = user_id)
 				form.save()
+			elif 'btnInterested' in request.POST:
+				event_id = request.POST.get("event_id1")	
+				str_numi = request.POST.get("event_numi")
+				event_numinterested = int(str_numi)
 
-				return HttpResponseRedirect("http://127.0.0.1:8000/organizer/events_organizer")
+				update_numinterested = Events.objects.filter(id = event_id).update(num_interested = event_numinterested+1)
+
+				print(update_numinterested)
+				print('Number of Interested Updated')
+		return HttpResponseRedirect("http://127.0.0.1:8000/organizer/events_organizer")
 
 class OrganizerProfileView(View):
 	def get(self, request):

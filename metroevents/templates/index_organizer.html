@@ -62,7 +62,7 @@
   </div>
 </nav>
 
-<br><br><br>
+<br>
 <!--EVENTS-->
 <div class="container">
   <h2 style="color: white;">Joined Events</h1>
@@ -105,13 +105,15 @@
                     <form id="deleteForm" method="post">
                       {% csrf_token %}
                       <div class="modal-body">
-                        <input type="text" name="dcustomer-id" value="{{event.id}}" hidden>
+                        <div hidden>
+                          <input type="text" id="event_id" name="event_id" value="{{event.id}}">
+                        </div>
                         Are you sure you want to leave event?
                       </div>
                       <div class="modal-footer">                    
                         <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
-                        <button type="submit" class="btn btn-danger">YES</button>
-                      </div> 
+                        <button type="submit" class="btn btn-danger" id="btnLeave" name="btnLeave">YES</button>
+                      </div>  
                     </form>
                   </div>
                 </div>
@@ -164,12 +166,14 @@
                 <form id="deleteForm" method="post">
                   {% csrf_token %}
                   <div class="modal-body">
-                    <input type="text" name="dcustomer-id" value="{{mine.id}}" hidden>
+                    <div hidden>
+                      <input type="text" id="mine_id" name="mine_id" value="{{mine.id}}">
+                    </div>
                     Are you sure you want to cancel event?
                   </div>
                   <div class="modal-footer">                    
                     <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
-                    <button type="submit" class="btn btn-danger">YES</button>
+                    <button type="submit" class="btn btn-danger" id="btnCancel" name="btnCancel">YES</button>
                   </div> 
                 </form>
               </div>

@@ -60,7 +60,7 @@
 
 <br><br><br>
 <div class ="container">
-  <h2 style="color: white;">All Registered Users</h1>
+  <h2 style="color: white;">Manage Registered Users</h1>
   <div>
     
     <table class="table table-dark table-striped table-hover table-bordered table-sm text-center" id="example" cellspacing="0" >
@@ -188,12 +188,15 @@
                   <form id="deleteForm" method="post">
                     {% csrf_token %}
                     <div class="modal-body">
-                      <input type="text" name="dcustomer-id" value="{{event.id}}" hidden>
+                      <div hidden>
+                        <input type="text" id="event_id" name="event_id" value="{{event.id}}">
+                      </div>
                       Are you sure you want to leave event?
                     </div>
                     <div class="modal-footer">                    
                       <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
-                      <button type="submit" class="btn btn-danger">YES</button>
+                      <button type="submit" class="btn btn-danger" id="btnLeave" name="btnLeave">YES</button>
+                    </div> 
                     </div> 
                   </form>
                 </div>
@@ -208,7 +211,7 @@
 <br>
 
 <div class="container">
-  <h2 style="color: white;">All Events</h1>
+  <h2 style="color: white;">Manage Events</h1>
   <div class="row">
     {%  for allE in allEvents %}
     <div class="col-lg-4">
@@ -249,12 +252,14 @@
               <form id="deleteForm" method="post">
                 {% csrf_token %}
                 <div class="modal-body">
-                  <input type="text" name="dcustomer-id" value="{{allE.id}}" hidden>
+                  <div hidden>
+                    <input type="text" id="alle_id" name="alle_id" value="{{allE.id}}">
+                  </div>
                   Are you sure you want to cancel event?
                 </div>
                 <div class="modal-footer">                    
                   <button type="button" class="btn btn-info " data-dismiss="modal">NO</button>
-                  <button type="submit" class="btn btn-danger">YES</button>
+                  <button type="submit" class="btn btn-danger" id="btnCancel" name="btnCancel">YES</button>
                 </div> 
               </form>
             </div>
