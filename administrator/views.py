@@ -34,7 +34,7 @@ class AdminIndexView(View):
 				event_id = request.POST.get("alle_id")
 				cancel_event = Events.objects.filter(id = event_id).delete()
 				print('Cancelled Successful')
-		return render(request, 'index_admin.html')
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/index_admin")
 
 class AdminEventView(View):
 	def get(self, request):
@@ -77,7 +77,7 @@ class AdminEventView(View):
 
 				print(update_numinterested)
 				print('Number of Interested Updated')
-		return render(request, 'events_admin.html')
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/events_admin.html")
 
 class AdminProfileView(View):
 	def get(self, request):
@@ -142,7 +142,7 @@ class AdminRequestView(View):
 
 				update_request = Requests.objects.filter(id = req_id).update(pending = 0)
 
-				return render(request, 'requests_admin.html')
+				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/requests_admin.html")
 
 			elif 'btnDeny' in request.POST:
 				req_id = request.POST.get("request-id")
@@ -160,4 +160,4 @@ class AdminRequestView(View):
 
 				update_request = Requests.objects.filter(id = req_id).update(pending = 0)
 
-				return render(request, 'requests_admin.html')
+				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/requests_admin.html")
