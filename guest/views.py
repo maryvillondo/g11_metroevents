@@ -99,7 +99,7 @@ class GuestRegisterView(View):
 				# user = User.objects.create_user(first, email, pword)
 				# user.last_name = last
 				# user.save()
-				return HttpResponseRedirect("http://127.0.0.1:8000/guest/index")
+				return render(request, 'index.html')
 			else:
 				return HttpResponse("Email already taken.")
 		else:
