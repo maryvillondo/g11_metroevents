@@ -40,7 +40,7 @@ class GuestIndexView(View):
 							form = currentUser.objects.get(id=1)
 							form.user_id = user.id
 							form.save()
-						return render(request, 'index_admin.html')
+							return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/index_admin")
 
 			for organizer in organizers:
 				for user in users:
@@ -49,14 +49,14 @@ class GuestIndexView(View):
 							form = currentUser.objects.get(id=1)
 							form.user_id = user.id
 							form.save()
-						return render(request, 'index_organizer.html')
+							return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/index_organizer")
 
 			for user in users:
 				if (user.email == email and user.user_pword == pword):
 					form = currentUser.objects.get(id=1)
 					form.user_id = user.id
 					form.save()
-					return render(request, 'index_user.html')
+					return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 		else:
 			return HttpResponse("Wrong Credentials")
 
@@ -99,7 +99,7 @@ class GuestRegisterView(View):
 				# user = User.objects.create_user(first, email, pword)
 				# user.last_name = last
 				# user.save()
-				return render(request, 'index.html')
+				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net")
 			else:
 				return HttpResponse("Email already taken.")
 		else:
