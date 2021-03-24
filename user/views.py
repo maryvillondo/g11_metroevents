@@ -27,7 +27,7 @@ class UserIndexView(View):
 			event_id = request.POST.get("event_id")
 			participant = Participants.objects.filter(event_id = event_id, user_id = current).delete()
 			print('Delete Successful')
-		return HttpResponseRedirect("http://127.0.0.1:8000/user/index_user")
+		return render(request, 'index_user.html')
 
 class UserEventView(View):
 	def get(self, request):
@@ -69,7 +69,7 @@ class UserEventView(View):
 
 				print(update_numinterested)
 				print('Number of Interested Updated')
-		return HttpResponseRedirect("http://127.0.0.1:8000/user/events_user")
+		return render(request, 'events_user.html')
 
 class UserProfileView(View):
 	def get(self, request):
@@ -114,7 +114,7 @@ class AccountUpgradeRequestView(View):
 			if (count == 0):
 				form = Requests(req_type = req_type, letter = letter, user_id = user_id, pending = 1)
 				form.save()
-				return HttpResponseRedirect("http://127.0.0.1:8000/user/index_user")
+				return render(request, 'index_user.html')
 		else:
 			print(form.errors)
 			return HttpResponse("not valid")
