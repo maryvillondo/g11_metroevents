@@ -8,6 +8,6 @@ urlpatterns=[
 
     #TEST URL
     path('events', views.GuestEventView.as_view(), name='events_view'),
-    path('index', views.GuestIndexView.as_view(), name='index_view'),
+    path('', views.GuestIndexView.as_view(), name='index_view'),
 	path('register', views.GuestRegisterView.as_view(), name='register_view')
 ]
