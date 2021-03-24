@@ -34,7 +34,7 @@ class OrganizerIndexView(View):
 				event_id = request.POST.get("mine_id")
 				cancel_event = Events.objects.filter(id = event_id).delete()
 				print('Cancelled Successful')
-		return HttpResponseRedirect("http://127.0.0.1:8000/organizer/index_organizer")
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/index_organizer")
 
 class OrganizerEventView(View):
 	def get(self, request):
@@ -77,7 +77,7 @@ class OrganizerEventView(View):
 
 				print(update_numinterested)
 				print('Number of Interested Updated')
-		return HttpResponseRedirect("http://127.0.0.1:8000/organizer/events_organizer")
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/events_organizer")
 
 class OrganizerProfileView(View):
 	def get(self, request):
@@ -111,7 +111,7 @@ class CreateEventView(View):
 			form = Events(event_name = name, event_date = date, num_participants = participants, user_id = user_id)
 			form.save()
 
-			return HttpResponseRedirect("http://127.0.0.1:8000/organizer/events_organizer")
+			return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/events_organizer")
 		else:
 			print(form.errors)
 			return HttpResponse("not valid")
