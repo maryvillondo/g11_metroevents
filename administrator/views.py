@@ -77,7 +77,7 @@ class AdminEventView(View):
 
 				print(update_numinterested)
 				print('Number of Interested Updated')
-		return HttpResponseRedirect("http://127.0.0.1:8000/administrator/events_admin")
+		return render(request, 'events_admin.html')
 
 class AdminProfileView(View):
 	def get(self, request):
@@ -142,7 +142,7 @@ class AdminRequestView(View):
 
 				update_request = Requests.objects.filter(id = req_id).update(pending = 0)
 
-				return HttpResponseRedirect("http://127.0.0.1:8000/administrator/requests_admin")
+				return render(request, 'requests_admin.html')
 
 			elif 'btnDeny' in request.POST:
 				req_id = request.POST.get("request-id")
@@ -160,4 +160,4 @@ class AdminRequestView(View):
 
 				update_request = Requests.objects.filter(id = req_id).update(pending = 0)
 
-				return HttpResponseRedirect("http://127.0.0.1:8000/administrator/requests_admin")
+				return render(request, 'requests_admin.html')
