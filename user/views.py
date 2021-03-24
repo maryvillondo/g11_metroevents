@@ -27,7 +27,7 @@ class UserIndexView(View):
 			event_id = request.POST.get("event_id")
 			participant = Participants.objects.filter(event_id = event_id, user_id = current).delete()
 			print('Delete Successful')
-		return render(request, 'index_user.html')
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 
 class UserEventView(View):
 	def get(self, request):
@@ -69,7 +69,7 @@ class UserEventView(View):
 
 				print(update_numinterested)
 				print('Number of Interested Updated')
-		return render(request, 'events_user.html')
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/events_user")
 
 class UserProfileView(View):
 	def get(self, request):
@@ -114,7 +114,7 @@ class AccountUpgradeRequestView(View):
 			if (count == 0):
 				form = Requests(req_type = req_type, letter = letter, user_id = user_id, pending = 1)
 				form.save()
-				return render(request, 'index_user.html')
+				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 		else:
 			print(form.errors)
 			return HttpResponse("not valid")
