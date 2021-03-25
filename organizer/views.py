@@ -91,6 +91,17 @@ class OrganizerProfileView(View):
 		}
 		return render(request, 'profile_organizer.html', context)
 
+	def post(self, request):
+		user_id = request.POST.get("user-id")
+		first = request.POST.get("user-firstname")
+		last = request.POST.get("user-lastname")
+		email = request.POST.get("user-email")
+		bdate = request.POST.get("user-birthdate")
+
+		update_user = Users.objects.filter(id = user_id).update(firstname = first, lastname = last,
+			email = email, birthdate = bdate)
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/profile_organizer")
+
 class CreateEventView(View):
 	def get(self, request):
 		return render(request, 'create_event.html')

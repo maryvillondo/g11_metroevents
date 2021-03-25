@@ -91,6 +91,17 @@ class AdminProfileView(View):
 		}
 		return render(request, 'profile_admin.html', context)
 
+	def post(self, request):
+		user_id = request.POST.get("user-id")
+		first = request.POST.get("user-firstname")
+		last = request.POST.get("user-lastname")
+		email = request.POST.get("user-email")
+		bdate = request.POST.get("user-birthdate")
+
+		update_user = Users.objects.filter(id = user_id).update(firstname = first, lastname = last,
+			email = email, birthdate = bdate)
+		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/profile_admin")
+
 class AdminRequestView(View):
 	def get(self, request):
 		current = currentUser.objects.values_list("user_id", flat=True).get(pk = 1)
