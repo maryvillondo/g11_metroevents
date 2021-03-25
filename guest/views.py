@@ -101,10 +101,10 @@ class GuestRegisterView(View):
 				# user.save()
 				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net")
 			else:
-				return HttpResponse("Email already taken.")
+				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/error")
 		else:
 			print(form.errors)
-			return HttpResponse('not valid')
+			return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/error")
 
 class GuestErrorView(View):
 	def get(self, request):
