@@ -23,7 +23,7 @@ class OrganizerIndexView(View):
 			'owned' : ownedEvents,
 			'participants' : participants
 		}
-		return render(request, 'index_organizer.html', context)
+		return render(request,'index_organizer.html', context)
 	
 	def post(self,request):
 		if request.method == 'POST':
