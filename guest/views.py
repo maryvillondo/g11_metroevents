@@ -108,4 +108,4 @@ class GuestRegisterView(View):
 
 class GuestErrorView(View):
 	def get(self, request):
-		return render(request,'wrongCredentials.html')
+			return render(request,'wrongCredentials.html')
