@@ -234,7 +234,7 @@
                   </div>
                 </div>
                 <div class="widget-49-meeting-action text-center">
-                    <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{allE.id}}">VIEW PARTICIPANTS</button>
+                    <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{allE.id}}">VIEW PARTICIPANTS</button><br>
                     <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{allE.id}}">CANCEL EVENT</button>
                 </div>
               </div>
@@ -253,7 +253,9 @@
               <div class="modal-body">
                 <ol>
                   {% for participant in participants %}
+                  {% if participant.event_id == allE.event_id %}
                   <li>{{participant.firstName}} {{participant.lastName}}</li>
+                  {% endif %}
                   {% endfor %}
                 </ol>
               </div>
