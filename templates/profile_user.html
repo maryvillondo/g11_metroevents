@@ -86,11 +86,14 @@
       <div class="modal-content">
         <form id="updateForm" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+          <div hidden>
+            <input type="text" name="user-id" value={{user.id}}>
+          </div>
           <div class="modal-body" style="margin-left: 3%;">
             <div class = "row">
               <div class = "col-sm-6">
                 <label style="font-weight: bold;">User ID</label>
-                <input disabled type="text" class="form-control" id="user-id" name="user-id" value ="{{user.id}}">
+                <input disabled type="text" class="form-control" name="user_id" value ="{{user.id}}">
               </div>
               <div class = "col-sm-6">
                 <label style="font-weight: bold;">Date Registered</label>
