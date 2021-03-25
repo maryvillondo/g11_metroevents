@@ -12,53 +12,53 @@ class GuestIndexView(View):
 		return render(request,'index.html')
 
 	def post(self, request):
-		form = LoginForm(request.POST)
+		if request.method == 'POST':
+			form = LoginForm(request.POST)
+			if form.is_valid():
+				email = request.POST.get("email")
+				pword = request.POST.get("pword")
 
-		if form.is_valid():
-			email = request.POST.get("email")
-			pword = request.POST.get("pword")
+				# user = authenticate(request, email = email, password = pword)
 
-			# user = authenticate(request, email = email, password = pword)
+				# if user is not None:
+				# 	print('Found')
+				# 	login(request, user)
+				# 	currentUser = user
+				# 	print(str(currentUser.id) + "is logged in")
+				# 	context = {
+				# 	'currentUser' : currentUser
+				# 	}
 
-			# if user is not None:
-			# 	print('Found')
-			# 	login(request, user)
-			# 	currentUser = user
-			# 	print(str(currentUser.id) + "is logged in")
-			# 	context = {
-			# 	'currentUser' : currentUser
-			# 	}
+				users = Users.objects.all()
+				organizers = Organizers.objects.all()
+				administrators = Administrators.objects.all()
 
-			users = Users.objects.all()
-			organizers = Organizers.objects.all()
-			administrators = Administrators.objects.all()
+				for administrator in administrators:
+					for user in users:
+						if (administrator.users_ptr_id == user.id):
+							if (user.email == email and user.user_pword == pword):
+								form = currentUser.objects.get(id=1)
+								form.user_id = user.id
+								form.save()
+								return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/index_admin")
 
-			for administrator in administrators:
+				for organizer in organizers:
+					for user in users:
+						if (organizer.users_ptr_id == user.id):
+							if (user.email == email and user.user_pword == pword):
+								form = currentUser.objects.get(id=1)
+								form.user_id = user.id
+								form.save()
+								return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/index_organizer")
+
 				for user in users:
-					if (administrator.users_ptr_id == user.id):
-						if (user.email == email and user.user_pword == pword):
-							form = currentUser.objects.get(id=1)
-							form.user_id = user.id
-							form.save()
-							return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/index_admin")
-
-			for organizer in organizers:
-				for user in users:
-					if (organizer.users_ptr_id == user.id):
-						if (user.email == email and user.user_pword == pword):
-							form = currentUser.objects.get(id=1)
-							form.user_id = user.id
-							form.save()
-							return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/index_organizer")
-
-			for user in users:
-				if (user.email == email and user.user_pword == pword):
-					form = currentUser.objects.get(id=1)
-					form.user_id = user.id
-					form.save()
-					return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
-		else:
-			return HttpResponse('not valid')
+					if (user.email == email and user.user_pword == pword):
+						form = currentUser.objects.get(id=1)
+						form.user_id = user.id
+						form.save()
+						return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
+			else:
+				return HttpResponse('not valid')
 
 class GuestEventView(View):
 	def get(self, request):
@@ -75,7 +75,7 @@ class GuestRegisterView(View):
 
 	def post(self, request):
 		form = UserForm(request.POST)
-
+		
 		if form.is_valid():
 			first = request.POST.get("firstName")
 			last = request.POST.get("lastName")
