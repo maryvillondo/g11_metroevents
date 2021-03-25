@@ -65,7 +65,7 @@
 <br>
 <!--EVENTS-->
 <div class="container">
-  <h2 style="color: white;">Joined Events</h1>
+  <h2 style="color: white;">Joined Events</h2>
   <div class="row">
     {%  for event in events %}
       <div class="col-lg-4">
@@ -125,7 +125,7 @@
 </div><!-- container end.// -->
 <br>
 <div class="container">
-  <h2 style="color: white;">My Events</h1>
+  <h2 style="color: white;">My Events</h2>
   <div class="row">
     {%  for mine in owned %}
       <div class="col-lg-4">
@@ -148,14 +148,14 @@
                   </div>
                 </div>
                 <div class="widget-49-meeting-action text-center">
-                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{allE.id}}">VIEW PARTICIPANTS</button><br>
+                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{mine.id}}">VIEW PARTICIPANTS</button><br>
                   <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{mine.id}}">CANCEL EVENT</button>
                 </div>
               </div>
             </div>
           </div>
           <!---Show Participants Modal-->
-          <div class="modal fade" id="viewParticipantsModal-{{allE.id}}" tabindex="-1" role="dialog" aria-labelledby="viewmodal" aria-hidden="true">
+          <div class="modal fade" id="viewParticipantsModal-{{mine.id}}" tabindex="-1" role="dialog" aria-labelledby="viewmodal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
