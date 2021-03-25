@@ -252,15 +252,15 @@
                 <div class="modal-body" style="margin-left: 3%;">
                   <div class = "row">
                     <div class = "col-sm-6">
-                      <label style="font-weight: bold; text-align: center;">Event Name</label>
-                      <input type="text" class="form-control" name="event_date" value="{{allE.event_name}}" required>
+                      <label style="font-weight: bold;">Event ID</label>
+                      <input disabled type="text" class="form-control" name="event_id" value ="{{allE.id}}">
                     </div>
                   </div><br>
 
                   <div class = "row">
                     <div class = "col-sm-6">
-                      <label style="font-weight: bold;">Event ID</label>
-                      <input disabled type="text" class="form-control" name="event_id" value ="{{allE.id}}">
+                      <label style="font-weight: bold; text-align: center;">Event Name</label>
+                      <input type="text" class="form-control" name="event-name" value="{{allE.event_name}}" required>
                     </div>
                     <div class = "col-sm-6">
                       <label style="font-weight: bold;">Event Date</label>
