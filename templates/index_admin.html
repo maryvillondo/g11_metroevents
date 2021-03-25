@@ -253,7 +253,7 @@
               <div class="modal-body">
                 <ol>
                   {% for participant in participants %}
-                  {% if participant.event_id == allE.event_id %}
+                  {% if participant.event_id == allE.id %}
                   <li>{{participant.firstName}} {{participant.lastName}}</li>
                   {% endif %}
                   {% endfor %}
