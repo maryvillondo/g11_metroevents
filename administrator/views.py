@@ -98,7 +98,7 @@ class AdminProfileView(View):
 		email = request.POST.get("user-email")
 		bdate = request.POST.get("user-birthdate")
 
-		update_user = Users.objects.filter(id = user_id).update(firstname = first, lastname = last,
+		update_user = Users.objects.filter(id = user_id).update(firstName = first, lastName = last,
 			email = email, birthdate = bdate)
 		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/administrator/profile_admin")
 
