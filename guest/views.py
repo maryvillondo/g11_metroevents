@@ -58,7 +58,7 @@ class GuestIndexView(View):
 					form.save()
 					return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 		else:
-			return HttpResponse("https://group11-metroevents.azurewebsites.net/error")
+			return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/error")
 
 class GuestEventView(View):
 	def get(self, request):
