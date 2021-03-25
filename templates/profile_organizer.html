@@ -71,19 +71,63 @@
   <img src="/media/images/avatar.png" style="height:150px;">
 	<h4 class="card-title mt-3 text-center">{{user.firstName}} {{user.lastName}}</h4>
 
-	<form>
-	 <p>Email: <a href="#">{{user.email}}</a></p>
-   <p>Birthday: {{user.birthdate}}</p>
-   {% endfor %}
-    </form>                                                     
+	<p>Email: <a href="#">{{user.email}}</a></p>
+  <p>Birthday: {{user.birthdate}}</p>       
+
+  <a type="button" class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#modal-{{user.id}}"></i>Update</a> 
 </article>
 </div> <!-- card.// -->
 </center>
 
-</div> 
-<!--container end.//-->
-<hr>
+<!-- Modal -->
+  <div class="modal fade" id="modal-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="updateForm" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="modal-body" style="margin-left: 3%;">
+            <div class = "row">
+              <div class = "col-sm-6">
+                <label style="font-weight: bold;">Customer ID</label>
+                <input disabled type="text" class="form-control" name="user-id" value ="{{user.id}}">
+              </div>
+              <div class = "col-sm-6">
+                <label style="font-weight: bold;">Date Registered</label>
+                <input disabled type="date" class="form-control" id="id-dateregistered" name="customer-dateregistered" value = {{user.register_date|date:"Y-m-d" }} >
+              </div>
+            </div><br>
 
+            <div class="row">
+              <div class = "col-sm-6">
+                <label style="font-weight: bold;">Firstname</label>
+                <input type="text" class="form-control" name="user-firstname" placeholder="Firstname" value = "{{user.firstName}}" required>
+              </div>
+              <div class = "col-sm-6">
+                <label style="font-weight: bold;">Lastname</label>
+                  <input type="text" class="form-control" name="user-lastname" placeholder="Lastname"  value = "{{user.lastName}}" required>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class = "col-sm-7">
+                <label style="font-weight: bold;">Email Address</label>
+                <input type="text" class="form-control" name="user-email" placeholder="Email Address"  value ="{{user.email}}" required>
+              </div>
+              <div class = "col-sm-5">
+                <label style="font-weight: bold;">Birthdate</label>
+                <input type="date" class="form-control" name="user-birthdate" placeholder="Birthdate"  value ={{user.birthdate|date:"Y-m-d" }} required>
+              </div>
+            </div><br>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-primary">UPDATE</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+          </div>
+          {% endfor %}
+        </form>
+      </div>
+    </div>
+  </div> <!-- Close tag for Update Modal -->
 </body>
-
 </html>

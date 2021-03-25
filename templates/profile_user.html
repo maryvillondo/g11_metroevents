@@ -71,11 +71,8 @@
   <img src="/media/images/avatar.png" style="height:150px;">
 	<h4 class="card-title mt-3 text-center">{{user.firstName}} {{user.lastName}}</h4>
 
-	<form>
 	 <p>Email: <a href="">{{user.email}}</a></p>
    <p>Birthday: {{user.birthdate}}</p>
-   {% endfor %}
-    </form>
 
     <a type="button" class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#modal-{{user.id}}"></i>Update</a>                                                     
 </article>
@@ -132,7 +129,5 @@
       </div>
     </div>
   </div> <!-- Close tag for Update Modal -->
-
 </body>
-
 </html>
