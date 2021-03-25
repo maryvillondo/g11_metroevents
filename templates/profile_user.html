@@ -69,15 +69,16 @@
 <div class="card" style="width: 28rem;">
 <article class="card-body mx-auto" style="max-width: auto;">
   <img src="/media/images/avatar.png" style="height:150px;">
-	<h4 class="card-title mt-3 text-center">{{user.firstName}} {{user.lastName}}</h4>
+  <h4 class="card-title mt-3 text-center">{{user.firstName}} {{user.lastName}}</h4>
 
-	 <p>Email: <a href="">{{user.email}}</a></p>
-   <p>Birthday: {{user.birthdate}}</p>
+  <p>Email: <a href="">{{user.email}}</a></p>
+  <p>Birthday: {{user.birthdate}}</p>
 
-    <a type="button" class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#modal-{{user.id}}"></i>Update</a>                                                     
+  <a type="button" class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#modal-{{user.id}}"></i>Update</a>
 </article>
-</div> <!-- card.// -->
+</div>
 </center>
+
 
 <!-- Modal -->
   <div class="modal fade" id="modal-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -128,6 +129,6 @@
         </form>
       </div>
     </div>
-  </div> <!-- Close tag for Update Modal -->
+  </div>
 </body>
 </html>
