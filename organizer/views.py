@@ -79,6 +79,16 @@ class OrganizerEventView(View):
 
 				print(update_numinterested)
 				print('Number of Interested Updated')
+			elif 'btnUpdate' in request.POST:
+				event_id = request.POST.get("event-id")
+				event_name = request.POST.get("event-name")
+				event_date = request.POST.get("event-date")
+				event_participants = request.POST.get("event-participants")
+				event_interested = request.POST.get("event-interested")
+
+				update_event = Events.objects.filter(id = event_id).update(event_name = event_name,
+					event_date = event_date, num_participants = event_participants, 
+					num_interested = event_interested)
 		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/organizer/events_organizer")
 
 class OrganizerProfileView(View):

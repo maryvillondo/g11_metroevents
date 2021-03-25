@@ -148,9 +148,58 @@
                   </div>
                 </div>
                 <div class="widget-49-meeting-action text-center">
-                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{mine.id}}" style="margin-bottom: 2%">VIEW PARTICIPANTS</button>
-                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{mine.id}}">CANCEL EVENT</button>
+                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#updateEventModal-{{mine.id}}" style="margin-bottom: 1%">UPDATE</button>
+                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{mine.id}}" style="margin-bottom: 1%">CANCEL EVENT</button>
+                  <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{mine.id}}">VIEW PARTICIPANTS</button>
                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- Update Event Modal -->
+          <div class="modal fade" id="updateEventModal-{{mine.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <form id="updateForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                  <div hidden>
+                    <input type="text" name="event-id" value={{mine.id}}>
+                  </div>
+                  <div class="modal-body" style="margin-left: 3%;">
+                    <div class = "row">
+                      <div class = "col-sm-6">
+                        <label style="font-weight: bold;">Event ID</label>
+                        <input disabled type="text" class="form-control" name="event_id" value ="{{mine.id}}">
+                      </div>
+                    </div><br>
+
+                    <div class = "row">
+                      <div class = "col-sm-6">
+                        <label style="font-weight: bold; text-align: center;">Event Name</label>
+                        <input type="text" class="form-control" name="event-name" value="{{mine.event_name}}" required>
+                      </div>
+                      <div class = "col-sm-6">
+                        <label style="font-weight: bold;">Event Date</label>
+                        <input type="date" class="form-control" name="event-date" value = {{mine.event_date|date:"Y-m-d" }} required>
+                      </div>
+                    </div><br>
+
+                    <div class="row">
+                      <div class = "col-sm-6">
+                        <label style="font-weight: bold;">Number of Participants</label>
+                        <input type="number" class="form-control" name="event-participants" placeholder="Number of Participants" value = "{{mine.num_participants}}" required>
+                      </div>
+                      <div class = "col-sm-6">
+                        <label style="font-weight: bold;">Number of Interested</label>
+                          <input type="number" class="form-control" name="event-interested" placeholder="Number of Interested"  value = "{{mine.num_interested}}" required>
+                      </div>
+                    </div><br>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-primary">UPDATE</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
