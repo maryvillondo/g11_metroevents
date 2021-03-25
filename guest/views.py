@@ -58,7 +58,7 @@ class GuestIndexView(View):
 					form.save()
 					return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 		else:
-			return HttpResponseRedirect('https://group11-metroevents.azurewebsites.net/error')
+			return HttpResponse('not valid')
 
 class GuestEventView(View):
 	def get(self, request):
@@ -101,10 +101,10 @@ class GuestRegisterView(View):
 				# user.save()
 				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net")
 			else:
-				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/error")
+				return HttpResponse('Email already taken.')
 		else:
 			print(form.errors)
-			return HttpResponseRedirect('https://group11-metroevents.azurewebsites.net/error')
+			return HttpResponse('not valid')
 
 class GuestErrorView(View):
 	def get(self, request):
