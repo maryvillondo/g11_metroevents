@@ -104,7 +104,7 @@ class GuestRegisterView(View):
 				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/error")
 		else:
 			print(form.errors)
-			return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/error")
+			return HttpResponseRedirect('https://group11-metroevents.azurewebsites.net/error')
 
 class GuestErrorView(View):
 	def get(self, request):
