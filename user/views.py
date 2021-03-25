@@ -82,15 +82,17 @@ class UserProfileView(View):
 		return render(request, 'profile_user.html', context)
 
 	def post(self, request):
-		user_id = request.POST.get("user-id")
-		first = request.POST.get("user-firstname")
-		last = request.POST.get("user-lastname")
-		email = request.POST.get("user-email")
-		bdate = request.POST.get("user-birthdate")
+		if request.method == 'POST':
+			if 'btnUpdate' in request.POST:
+				user_id = request.POST.get("user-id")
+				first = request.POST.get("user-firstname")
+				last = request.POST.get("user-lastname")
+				email = request.POST.get("user-email")
+				bdate = request.POST.get("user-birthdate")
 
-		update_user = Users.objects.filter(id = user_id).update(firstName = first, lastName = last,
-			email = email, birthdate = bdate)
-		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/profile_user")
+				update_user = Users.objects.filter(id = user_id).update(firstName = first, lastName = last,
+					email = email, birthdate = bdate)
+				return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/profile_user")
 
 class AccountUpgradeRequestView(View):
 	def get(self, request):
