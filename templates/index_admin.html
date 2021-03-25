@@ -233,10 +233,59 @@
                   </div>
                 </div>
                 <div class="widget-49-meeting-action text-center">
+                    <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#updateEventModal-{{allE.id}}" style="margin-bottom: 2%">UPDATE</button>
                     <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#viewParticipantsModal-{{allE.id}}" style="margin-bottom: 2%">VIEW PARTICIPANTS</button>
                     <button type="button" class="btn btn-sm btn-flash-border-primary" data-toggle="modal" data-target="#cancelEventModal-{{allE.id}}">CANCEL EVENT</button>
                 </div>
               </div>
+          </div>
+        </div>
+        <!-- Update Event Modal -->
+        <div class="modal fade" id="updateEventModal-{{allE.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <form id="updateForm" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div hidden>
+                  <input type="text" name="event-id" value={{allE.id}}>
+                </div>
+                <div class="modal-body" style="margin-left: 3%;">
+                  <div class = "row">
+                    <div class = "col-sm-6">
+                      <label style="font-weight: bold; text-align: center;">Event Name</label>
+                      <input type="text" class="form-control" name="event_date" value="{{allE.event_name}}" required>
+                    </div>
+                  </div><br>
+
+                  <div class = "row">
+                    <div class = "col-sm-6">
+                      <label style="font-weight: bold;">Event ID</label>
+                      <input disabled type="text" class="form-control" name="event_id" value ="{{allE.id}}">
+                    </div>
+                    <div class = "col-sm-6">
+                      <label style="font-weight: bold;">Event Date</label>
+                      <input type="date" class="form-control" name="event-date" value = {{allE.event_date|date:"Y-m-d" }} required>
+                    </div>
+                  </div><br>
+
+                  <div class="row">
+                    <div class = "col-sm-6">
+                      <label style="font-weight: bold;">Number of Participants</label>
+                      <input type="number" class="form-control" name="event-participants" placeholder="Number of Participants" value = "{{allE.num_participants}}" required>
+                    </div>
+                    <div class = "col-sm-6">
+                      <label style="font-weight: bold;">Number of Interested</label>
+                        <input type="number" class="form-control" name="event-interested" placeholder="Number of Interested"  value = "{{allE.num_interested}}" required>
+                    </div>
+                  </div><br>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-primary">UPDATE</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         <!---Show Participants Modal-->
