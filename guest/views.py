@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 class GuestIndexView(View):
 	def get(self, request):
-		return render(request, 'index.html')
+		return render(request,'index.html')
 
 	def post(self, request):
 		form = LoginForm(request.POST)
@@ -67,11 +67,11 @@ class GuestEventView(View):
 		context = {
 			'events' : events
 		}
-		return render(request, 'events.html', context)
+		return render(request,'events.html', context)
 
 class GuestRegisterView(View):
 	def get(self, request):
-		return render(request, 'register.html')
+		return render(request,'register.html')
 
 	def post(self, request):
 		form = UserForm(request.POST)
@@ -108,4 +108,4 @@ class GuestRegisterView(View):
 
 class GuestErrorView(View):
 	def get(self, request):
-		return render(request, 'wrongCredentials.html')
+		return render(request,'wrongCredentials.html')
