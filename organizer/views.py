@@ -15,11 +15,13 @@ class OrganizerIndexView(View):
 		user = Users.objects.filter(id = current)
 		events = Events.objects.raw('SELECT * FROM me_events WHERE me_events.id IN (SELECT participants.event_id FROM participants, currentUser WHERE participants.user_id = currentUser.user_id)')
 		ownedEvents = Events.objects.raw('SELECT * FROM me_events WHERE me_events.id IN (SELECT me_events.id FROM me_events, currentUser WHERE me_events.user_id = currentUser.user_id)')
-		
+		participants = Users.objects.raw('SELECT * FROM users, participants, me_events WHERE users.id = participants.user_id AND participants.event_id = me_events.id')
+
 		context = {
 			'user' : user,
 			'events' : events,
-			'owned' : ownedEvents
+			'owned' : ownedEvents,
+			'participants' : participants
 		}
 		return render(request, 'index_organizer.html', context)
 	
