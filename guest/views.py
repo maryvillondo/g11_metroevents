@@ -58,7 +58,7 @@ class GuestIndexView(View):
 					form.save()
 					return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 		else:
-			return HttpResponse("Wrong Credentials")
+			return HttpResponse("https://group11-metroevents.azurewebsites.net/error")
 
 class GuestEventView(View):
 	def get(self, request):
@@ -105,3 +105,7 @@ class GuestRegisterView(View):
 		else:
 			print(form.errors)
 			return HttpResponse('not valid')
+
+class GuestErrorView(View):
+	def get(self, request):
+		return render(request, 'wrongCredentials.html')
