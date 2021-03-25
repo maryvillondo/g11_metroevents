@@ -3,6 +3,7 @@ from django.views.generic import View
 from organizer.models import Events
 from .forms import *
 from .models import *
+from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
@@ -58,7 +59,8 @@ class GuestIndexView(View):
 						form.save()
 						return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 			else:
-				return HttpResponse('not valid')
+				template = loader.get_template('polls/index.html')
+				return HttpResponse(template.render(request))
 
 class GuestEventView(View):
 	def get(self, request):
