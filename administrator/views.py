@@ -14,12 +14,14 @@ class AdminIndexView(View):
 		allUsers = Users.objects.raw('SELECT * FROM users')
 		events = Events.objects.raw('SELECT * FROM me_events WHERE me_events.id IN (SELECT participants.event_id FROM participants, currentUser WHERE participants.user_id = currentUser.user_id)')
 		allEvents = Events.objects.raw('SELECT * FROM me_events')
+		participants = Participants.objects.raw('SELECT * FROM users WHERE users.id IN (SELECT participants.user_id FROM participants, me_events, users WHERE me_events.id = participants.event_id AND users.id = participants.user_id)')
 
 		context = {
 			'user' : user,
 			'allUsers' : allUsers,
 			'events' : events,
-			'allEvents' : allEvents
+			'allEvents' : allEvents,
+			'participants' : participants
 		}
 		return render(request, 'index_admin.html', context)
 	
