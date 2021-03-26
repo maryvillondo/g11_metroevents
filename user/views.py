@@ -25,6 +25,10 @@ class UserIndexView(View):
 		if 'btnLeave' in request.POST:
 			current = currentUser.objects.values_list("user_id", flat=True).get(pk = 1)
 			event_id = request.POST.get("event_id")
+			str_nump = request.POST.get("event_nump")
+			event_numparticipants = int(str_nump) - 1
+
+			update_numparticipants = Events.objects.filter(id = event_id).update(num_participants = event_numparticipants)
 			participant = Participants.objects.filter(event_id = event_id, user_id = current).delete()
 			print('Delete Successful')
 		return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
