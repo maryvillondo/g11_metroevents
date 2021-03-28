@@ -59,8 +59,7 @@ class GuestIndexView(View):
 						form.save()
 						return HttpResponseRedirect("https://group11-metroevents.azurewebsites.net/user/index_user")
 			else:
-				template = loader.get_template('polls/index.html')
-				return HttpResponse(template.render(request))
+				return render(request,'index.html')
 
 class GuestEventView(View):
 	def get(self, request):
